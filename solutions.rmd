@@ -1,0 +1,63 @@
+---
+title: "Problems and Solutions"
+author: "TanQingyue"
+date: "2020/3/20"
+output: pdf_document: default
+        html_document: default
+---
+
+At irst, my computer system is `Windows10`and it is 64 bit. 
+Use Git to clone the source of Hadley Wickham's **Advanced R Programming**.
+
+```{r eval=FALSE}
+git clone https://github.com/hadley/adv-r.git
+```
+
+Later,In order to compile Advanced R into a PDF, I installed the MiKTex and Rmarkdown packages  before compiling
+
+### Install R Package dependencies
+```{r eval=FALSE}
+devtools::install_github("hadley/sloop")
+devtools::install_github("hadley/emo")
+```
+
+Finanlly, i use `bookdown` package to compile the book.
+```{r eval=FALSE}
+bookdown::render_book("index.Rmd", output_format = "bookdown::pdf_book")
+```
+
+During the building process, I've met several problems, the followings are the errors I've met and how I solved them. 
+
+## Unable to load devtools package
+
+Execute the following command in Git.
+```{r eval=FALSE}
+$ git config --global http.sslBackend "openssl"
+$ git config --global http.sslCAInfo [path to .pem file] 
+```
+
+# Failed to install "emo" from Github:
+
+```{r fig.align='center'}
+knitr::include_graphics("C:/Users/dell/Desktop/adv-r/error/2.PNG")
+```
+
+To solve this problem,I executed the following command in Git.
+```{r eval=FALSE}
+$ git config --global http.sslBackend "openssl"
+$ git config --global http.sslCAInfo E:/R/R-3.6.1/library/openssl/cacert.pem 
+```
+
+# Missing Packages
+Most of the warnings are packages missing. Use install.packages() to solve these problems. The packages I installed during the process are lubridate, purr, stringing, Rcpp, tinytex, dbplyr, etc.
+
+# Fonts cannot be found
+
+```{r fig.align='center'}
+knitr::include_graphics("C:/Users/dell/Desktop/adv-r/error/4.PNG")
+```
+
+I downloaded the font `Inconsolate` and `Andale Mono` copied it to `C:\Windows\Fonts`
+
+After solving these problems, i built the book successfully .
+
